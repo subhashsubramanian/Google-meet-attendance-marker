@@ -1,7 +1,7 @@
 # Mark attendance of Google meet attendees
 -an apps script that marks attendance in a Google spreadsheet in the format generally used in schools
 
-## Attendance is marked as Presents and Absents against nominal roll after importing from CHrome extension
+### Attendance is marked as Present and Absent against nominal roll after importing from Chrome extension
 
 ## How to use ?
 
@@ -25,9 +25,11 @@ Open Tools  Script Editor and replace any existing code with the code in meetAtt
 
 Rename Code.gs to meetAttendance.gs
 
-To run the script, Refresh the spreadsheet click on the spreadsheet menu item "Attendance" > Mark Attendance
+Give the Untitled project (on top left) a name- like MarkAttendance
 
-You will be required to authorise the code. Do so.
+Refresh the spreadsheet and click on the spreadsheet menu item "Attendance" > Mark Attendance
+
+You will be required to authorise the code and give it permissions. Do so.
 
 Refresh the spreadsheet. You will see a menu item "Attendance". 
 
@@ -35,4 +37,4 @@ Refresh the spreadsheet. You will see a menu item "Attendance".
 
 Click on Attendance > Mark Attendance
 
-You can choose to run the Mark Attendance program each time after you get the attendees using the extension or you can run it after many sessions are done.
+You can choose to run the Mark Attendance program each time after you get the attendees using the extension or you can run it after many meet session attendees are imported into this spreadsheet.
