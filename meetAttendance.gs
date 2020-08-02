@@ -1,4 +1,6 @@
-/* Menu Options */
+/* Mark attendance against a nominal role v1.0- Subhash Subramanian */
+
+// Menu Options 
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Attendance')
