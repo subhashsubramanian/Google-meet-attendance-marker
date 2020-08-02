@@ -1,5 +1,7 @@
-# Mark attendance in a conventional format of Presents and Absents against nominal roll after importing from 
-a an apps script that creates classrooms from data in a google spreadsheet
+# Mark attendance of Google meet attendees
+-an apps script that marks attendance in a Google spreadsheet in the format generally used in schools
+
+## Attendance is marked as Presents and Absents against nominal roll after importing from CHrome extension
 
 ## How to use ?
 
