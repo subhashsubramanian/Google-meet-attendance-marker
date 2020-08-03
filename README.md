@@ -58,6 +58,8 @@ Ensure that you see menu item "Attendance"
 
 Click on Attendance > Mark Attendance
 
+Points to note:
+
 Run the Mark Attendance program each time after you get the attendees using the extension 
 
 OR you can run the program after many sessions.
