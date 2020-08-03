@@ -3,9 +3,9 @@
 
 ### Attendance is marked as Present and Absent against nominal roll after importing from Chrome extension
 
-## How to use ?
+## How to use ? Follow exactly as below
 
-## Step 1 Chrome extension 
+## Step 1 Install Chrome extension 
 
 Install Chrome add on Meet Attendance from https://chrome.google.com/webstore/detail/meet-attendance/nenibigflkdikhamlnekfppbganmojlg?hl=en
 
@@ -25,7 +25,7 @@ From the third column you'll see the names of attendees who came for each meetin
 
 Ensure that the first two columns have ALL the expected attendees in the roll (sorted by Roll number-if that is how you need to submit it). Their names must be EXACTLY as per their email account name (and not official records)
 
-Each time you go to the Show everyone button and People during a meet session, it will fill a new column with attendees at that time.
+Each time you click on the Show everyone button and then People during a meet session, it will fill a new column with attendees at that time. You can turn this off by toggling off the horizontal toggle button.
 
 ## Step 2 Install the Google apps script code in the spreadsheet
 
