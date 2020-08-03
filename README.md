@@ -36,7 +36,7 @@ Each time you click on the Show everyone button > then People during a meet sess
 
 You must do this step after only a meet session has ended. 
 
-1) Go to Click on meetattendance.gs 
+1) Go to https://github.com/subhashsubramanian/Google-meet-attendance-marker/blob/master/meetAttendance.gs Click on meetattendance.gs 
 
 2) Click on Raw, and Ctrl A (select all) then Ctrl C (Copy)
 
