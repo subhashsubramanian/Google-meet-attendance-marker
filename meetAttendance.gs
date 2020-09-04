@@ -1,4 +1,4 @@
-/* Mark attendance against a nominal role v1.0- Subhash Subramanian */
+/* Mark attendance against a nominal role v2.0- Subhash Subramanian */
 
 // Menu Options 
 function onOpen() {
@@ -18,10 +18,10 @@ function markAllCols(){
   var lastCol = ss.getDataRange().getLastColumn();
   var thisCol = lastCol;
   var firstCol = 2;
-  var firstRow = 3;
+  var firstRow = 2;
   var curvalueColA = ss.getRange(1,thisCol).getValue().toString();
   while (curvalueColA.substring(curvalueColA.length-5) !== "_Done" && thisCol > firstCol){
-    markthisCol(ss,thisCol,lastrowR);
+    markthisCol(ss,firstRow,thisCol,lastrowR);
     thisCol = thisCol-1;
     curvalueColA = ss.getRange(1,thisCol).getValue().toString();
     lastCol = ss.getDataRange().getLastColumn();
@@ -37,7 +37,7 @@ function markAllCols(){
 }
 
 
-function markthisCol(ss,thisCol,lastrowR){
+function markthisCol(ss,firstRow, thisCol,lastrowR){
   // get lastrow of attendees column
   var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   //get lastrow of attendees column
@@ -54,12 +54,13 @@ function markthisCol(ss,thisCol,lastrowR){
   var curvalueColAR2 = ss.getRange(2,colA).getValue();
   //ss.getRange(1,colA).setValue(curvalueColA + "_Done");
   ss.getRange(1,colA+1).setValue(curvalueColAR1 + "_Done");
-  ss.getRange(2,colA+1).setValue(curvalueColAR2);  
+  //ss.getRange(2,colA+1).setValue(curvalueColAR2);  
   
-  for (rowR=3; rowR < lastrowR+1; rowR++){ //rowR loop
+  /* loop
+  for (rowR=firstRow; rowR < lastrowR+1; rowR++){ //rowR loop
     lastCol = ss.getDataRange().getLastColumn();
     //Browser.msgBox("I am on Roll row " + rowR + " and Att row " + rowA)
-    for (rowA=3; rowA < lastrowA+1; rowA++){ //rowA loop
+    for (rowA=firstRow; rowA < lastrowA+1; rowA++){ //rowA loop
       if (ss.getRange(rowA, colA).getValue() == ss.getRange(rowR, colR).getValue()){
          ss.getRange(rowR, colA+1).setValue("P");   // Present
          break;
@@ -70,6 +71,21 @@ function markthisCol(ss,thisCol,lastrowR){
       }
     } // rowA loop
   } // rowR loop
+  */
+  
+  //faster method: use array method- check each cell of Roll call column with Attendees array
+   var AttArray = flatten(ss.getRange(firstRow,colA,lastrowA-firstRow+1).getValues());
+   for (rowR=firstRow; rowR < lastrowR+1; rowR++){ //rowR loop
+    lastCol = ss.getDataRange().getLastColumn();
+   //Browser.msgBox(AttArray.indexOf(ss.getRange(rowR, colR).getValue())) 
+   if(AttArray.indexOf(ss.getRange(rowR, colR).getValue()) > -1) {
+     //mark present or Absent
+     ss.getRange(rowR, colA+1).setValue("P");   // Present
+    }
+    else {
+    ss.getRange(rowR, colA+1).setValue("A");   // Absent
+    }
+  }
   
   //delete column A
   var spreadsheet = SpreadsheetApp.getActive();  
@@ -102,6 +118,11 @@ function insertCol(colNum){
   spreadsheet.getActiveSheet().insertColumnsAfter(colNum, 1);
 }
 
+
+// Takes and array of arrays matrix and return an array of elements.
+function flatten(arrayOfArrays){
+  return [].concat.apply([], arrayOfArrays);
+}
 
 
 
