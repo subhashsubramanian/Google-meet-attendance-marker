@@ -16,7 +16,7 @@ function markAtt(){
   var ui = SpreadsheetApp.getUi();
   var response = ui.alert('Are you sure you want to mark attendance in the sheet: ' + toSheetName + ' ?', ui.ButtonSet.YES_NO);
   if (response == response.NO) {
-     Browser.msgBox("Run the function while on the sheet in which you you wish to mark attendance")
+     Browser.msgBox("Run the function while on the sheet in which you wish to mark attendance")
    } 
   else {
   // copy from all sheets with names with last 10 charaters same as this sheet
