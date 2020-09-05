@@ -14,17 +14,19 @@ Click on Add to Chrome > Add extension.
 
 2) For the first time you use it in your class, take attendance by clicking on the show everyone button and then click People.
 
-3) Click on the icon to open the spreadsheet. Rename the spreadsheet if required. 
+3) Click on the tick mark icon to open the spreadsheet. Rename the file if required. 
+
+You must leave the last 10 alphabets of the sheet as it is. This is where attendance will be agrregated. You can prefix say the subject code at the beginning e.g. your sheet might be named something like 101 abcdefghij (where abcdefghit is the meet link for 101). 
+
+Add first two columns: The first column is Names of students (as per their email), second column is Roll no. Give header to column A as student Name and B as Roll no. 
 
 Points to note: 
 
-Add first two columns: The first column is Names of students (as per their email), second column is Roll nos.
+For each subsequent session the names of attendees who came for that meet session will be in a new sheet named as mm/dd/yyyy abcdefghij (where abcdefghit is the meet link). You can take attendance multiple times during a meet session. It will add attendees who joined later also in the same sheet in the later rows.
 
-For each session the names of attendees who came for each meet session will be in a new sheet. You can take attendance multiple times during a meet session. It will add attendees who joined later also in the same sheet in the later rows.
+Ensure that the first two columns have ALL the expected attendees (sorted by Roll number-if that is how you need to submit it). Their names must be EXACTLY as per their email account name (and not official records). You can copy paste names from attendees in say a meet session where all expected attendees were present.
 
-Ensure that the first two columns have ALL the expected attendees (sorted by Roll number-if that is how you need to submit it). Their names must be EXACTLY as per their email account name (and not official records). You can copy paste names from attendees in a meet session where all expected attendees were present.
-
-Each time you click on the Show everyone button > then People during a meet session, it will fill a new sheet with attendees at that time. You can turn this off by toggling off the horizontal toggle button.
+Each time you click on the Show everyone button > then People during a meet session, it will fill a new sheet with attendees at that time. 
 
 ## Step 2 Install the Google apps script code in the spreadsheet
 
@@ -54,9 +56,7 @@ Click on Attendance > Mark Attendance
 
 Points to note:
 
-Run the Mark Attendance program each time after you get the attendees using the extension 
+Run the Mark Attendance program each time after you get the attendees using the extension OR you can run the program after many sessions.
 
-OR you can run the program after many sessions.
-
-Program must be run on the sheet which on which you want attendance.
+## Program must be run on the sheet which on which you want attendance to be aggregated for e.g. in the sheet named 101 abcdefghij (where abcdefghit is the meet link for 101).
 
