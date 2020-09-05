@@ -1,18 +1,37 @@
-/* Mark attendance against a nominal role v2.0- Subhash Subramanian */
+/* Mark attendance against a nominal role v2.0 Sep-05-2020- Subhash Subramanian */
 
 // Menu Options 
 function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Attendance')
-  .addItem('Mark Attendance', 'markAllCols')
+  .addItem('Mark Attendance', 'markAtt')
   .addToUi();
 }
 
 
 
-function markAllCols(){
-  //get last row of Roll column
+function markAtt(){
   var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var toSheetName = ss.getSheetName();
+  var ui = SpreadsheetApp.getUi();
+  var response = ui.alert('Are you sure you want to mark attendance in the sheet: ' + toSheetName + ' ?', ui.ButtonSet.YES_NO);
+  if (response == response.NO) {
+     Browser.msgBox("Run the function while on the sheet in which you you wish to mark attendance")
+   } 
+  else {
+  // copy from all sheets with names with last 10 charaters same as this sheet
+  var lastCol = ss.getDataRange().getLastColumn();
+  var colToPaste = lastCol;
+  copyFromAllSheets(toSheetName);
+  // mark att for each column
+  SpreadsheetApp.getActiveSpreadsheet().getSheetByName(toSheetName).activate();
+  ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  markAllCols(ss);
+  }
+}
+
+function markAllCols(ss) {  
+  //get last row of Roll column
   //get lastrow of Roll column
   var lastrowR = lastRowofColumn(ss,1);
   var lastCol = ss.getDataRange().getLastColumn();
@@ -30,7 +49,6 @@ function markAllCols(){
   ss.getRange(firstRow, firstCol+1, lastrowR-firstRow+1, lastCol-firstCol).activate();
   ss.getActiveRangeList().setHorizontalAlignment('center');
     
-  
   Browser.msgBox("Attendance Marked");  
   // Second check if (ss.getRange[3][thisCol]) =="P" or ss.getRange[3][thisCol]) =="A" ) :
   //tell marking attendence is done and go to next col.
@@ -51,26 +69,12 @@ function markthisCol(ss,firstRow, thisCol,lastrowR){
   // edit first two rows
   // indicate that attendance is marked for the column 
   var curvalueColAR1 = ss.getRange(1,colA).getValue();
-  var curvalueColAR2 = ss.getRange(2,colA).getValue();
+  //var curvalueColAR2 = ss.getRange(2,colA).getValue();
   //ss.getRange(1,colA).setValue(curvalueColA + "_Done");
   ss.getRange(1,colA+1).setValue(curvalueColAR1 + "_Done");
   //ss.getRange(2,colA+1).setValue(curvalueColAR2);  
   
-  /* loop
-  for (rowR=firstRow; rowR < lastrowR+1; rowR++){ //rowR loop
-    lastCol = ss.getDataRange().getLastColumn();
-    //Browser.msgBox("I am on Roll row " + rowR + " and Att row " + rowA)
-    for (rowA=firstRow; rowA < lastrowA+1; rowA++){ //rowA loop
-      if (ss.getRange(rowA, colA).getValue() == ss.getRange(rowR, colR).getValue()){
-         ss.getRange(rowR, colA+1).setValue("P");   // Present
-         break;
-      }else if (rowA == lastrowA) {
-          ss.getRange(rowR, colA+1).setValue("A");  // Absent
-        }
-      else {  // continue to next row on rowA loop
-      }
-    } // rowA loop
-  } // rowR loop
+  /* double loop- at the end- now replaced
   */
   
   //faster method: use array method- check each cell of Roll call column with Attendees array
@@ -94,10 +98,6 @@ function markthisCol(ss,firstRow, thisCol,lastrowR){
 } // end of function
 
   
-// more elegant solution: use includes function in javascript 
-// if attendees rollName n = attendees.includes(rollName[rowR]);
-
-
 
 function lastRowofColumn(sheet,column){
   //var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet(); 
@@ -113,6 +113,7 @@ function lastRowofColumn(sheet,column){
   }
 }
 
+
 function insertCol(colNum){
   var spreadsheet = SpreadsheetApp.getActive();
   spreadsheet.getActiveSheet().insertColumnsAfter(colNum, 1);
@@ -125,4 +126,122 @@ function flatten(arrayOfArrays){
 }
 
 
+function copyFromAllSheets(toSheetName){
+  var file = SpreadsheetApp.getActiveSpreadsheet();
+  // get names of all sheets in the file
+  var sheetList = getAllSheetNames(file)
+  // Browser.msgBox(sheetList)
+  // choose relevant sheets = fromSheets
+  var copyFromSheets = retainSameSheetNames(sheetList,toSheetName);
+  // Browser.msgBox(copyFromSheets)
+  // loop to copy required cells from each fromSheet and delete that fromSheet
+  for (var i = 0; i < copyFromSheets.length; i++){
+    var fromSheetName = copyFromSheets[i];
+    var toSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(toSheetName);
+    var colToPaste = toSheet.getDataRange().getLastColumn()+1; 
+    copyfromSheet(fromSheetName,toSheetName,colToPaste);
+    //var colToPaste = toSheet.getDataRange().getLastColumn()
+    //delete the fromsheet after copying data
+    deleteThisSheet(fromSheetName);
+   }
+  file.getSheetByName(toSheetName).activate();
+  }
 
+
+function getAllSheetNames(file){  
+  // get names of all sheets in the file
+  var sheetList = [];
+  //var ss = SpreadsheetApp.getActiveSpreadsheet();
+    file.getSheets().forEach(function(val){
+       sheetList.push(val.getName())
+    });
+  return flatten(sheetList);
+}
+
+
+function retainSameSheetNames(sheetList,toSheetName){
+  // delete sheetnames that dont have name ending with the same 10 characters
+  // also delete toSheetName from the array
+  // since meet has 10 alphabets
+  var i = 0;
+  var toSheetLast10 = toSheetName.substring(toSheetName.length-10); 
+  var numSheets = sheetList.length
+  while (i < numSheets) {
+    var fromSheetLast10 = sheetList[i].substring(sheetList[i].length-10); 
+    if (sheetList[i] === toSheetName){
+      sheetList.splice(i, 1);
+      numSheets = sheetList.length
+    } else if (fromSheetLast10 === toSheetLast10) {
+      ++i;
+    } else {
+      sheetList.splice(i, 1);
+      numSheets = sheetList.length
+    }
+  }
+  // reverse order
+  sheetList = sheetList.reverse()
+  return sheetList;
+}
+
+
+function copyfromSheet(fromSheetName,toSheetName,colToPaste){
+  // copy from relevant cells in source sheets 
+  // paste to relevant cells in destination sheets
+  var spreadsheet = SpreadsheetApp.getActive();
+  spreadsheet.setActiveSheet(spreadsheet.getSheetByName(fromSheetName), true);
+  var fromSheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(fromSheetName);
+  var lastAttendeeRow = lastRowofColumn(fromSheet,1);
+  spreadsheet.getRange('A2').activate();
+  var currentCell = spreadsheet.getCurrentCell();
+  spreadsheet.getSelection().getNextDataRange(SpreadsheetApp.Direction.DOWN).activate();
+  currentCell.activateAsCurrentCell();
+  spreadsheet.setActiveSheet(spreadsheet.getSheetByName(toSheetName), true);
+  // convert colNum to alphabet?
+  SpreadsheetApp.getActive().getActiveSheet().getRange(2,colToPaste).activate()
+  // Browser.msgBox("\'" + fromSheetName + "\'" + "!A2:A" + lastAttendeeRow);
+  spreadsheet.getRange("\'" + fromSheetName + "\'" + "!A2:A" + lastAttendeeRow).copyTo(spreadsheet.getActiveRange(), SpreadsheetApp.CopyPasteType.PASTE_NORMAL, false);
+  // paste date in first row 10 characters mm/dd/yyyy
+  var dateval = fromSheetName.substring(0,10);
+  SpreadsheetApp.getActive().getActiveSheet().getRange(1,colToPaste).setValue(dateval);
+  
+}
+
+
+function deleteThisSheet(sheetName){
+   // delete this source sheet
+ var file = SpreadsheetApp.getActiveSpreadsheet();
+ var delSheet = file.getSheetByName(sheetName); 
+ file.deleteSheet(delSheet);
+}
+
+
+function test(){
+var file = SpreadsheetApp.getActiveSpreadsheet();
+  // get names of all sheets in the file
+  var sheetList = getAllSheetNames(file)
+  // Browser.msgBox(sheetList)
+  // choose relevant sheets = fromSheets
+  var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  // copy from all sheets with names with last 10 charaters same as this sheet
+  var toSheetName = ss.getSheetName();
+  Browser.msgBox(toSheetName);
+  sameNameSheets = retainSameSheetNames(sheetList,toSheetName);
+  Browser.msgBox(sameNameSheets);
+}
+
+/* double loop
+for (rowR=firstRow; rowR < lastrowR+1; rowR++){ //rowR loop
+    lastCol = ss.getDataRange().getLastColumn();
+    //Browser.msgBox("I am on Roll row " + rowR + " and Att row " + rowA)
+    for (rowA=firstRow; rowA < lastrowA+1; rowA++){ //rowA loop
+      if (ss.getRange(rowA, colA).getValue() == ss.getRange(rowR, colR).getValue()){
+         ss.getRange(rowR, colA+1).setValue("P");   // Present
+         break;
+      }else if (rowA == lastrowA) {
+          ss.getRange(rowR, colA+1).setValue("A");  // Absent
+        }
+      else {  // continue to next row on rowA loop
+      }
+    } // rowA loop
+  } // rowR loop
+ */ 
