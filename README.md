@@ -16,15 +16,13 @@ Click on Add to Chrome > Add extension.
 
 3) Click on the tick mark icon to open the spreadsheet. Rename the file if required. 
 
-After taking attendance the first time, you can change the first part of the sheet name (date in mm/dd/yyyy) to say your subject code. But you must leave the second part i.e. last 10 alphabets of the sheet name as it is. This is where attendance will be agrregated. For e.g. your sheet might be named something like 101 abcdefghij (where abcdefghit is the meet link for subject 101). 
+After taking attendance the first time, you can change the first part of the sheet name (date in mm/dd/yyyy) to say your subject code. But you must leave the second part i.e. the last 10 alphabets of the sheet name as it is. This is where all future meet attendance will be aggregated. For e.g. your sheet might be named something like 101 abcdefghij (where abcdefghij is the meet link for subject 101). 
 
-Edit the first columns: The first column is Names of students (as per their email), second column is Roll no. you can delete the other 2 columns (C and E) You can give a header to column A as student Name and to column B as Roll no. 
+Edit the first column: The first column is Names of students (as per their email), add a column B with Roll no. you can delete the other columns (C, D etc.) You can give a header to column A as student Name and to column B as Roll no. 
 
-Points to note: 
+For each subsequent meet session the names of attendees who came for that meet session will be in a new sheet named as mm/dd/yyyy abcdefghij (where abcdefghij is the meet link). You can take attendance multiple times during a meet session. It will add attendees who joined later also in the same sheet in the later rows.
 
-For each subsequent session the names of attendees who came for that meet session will be in a new sheet named as mm/dd/yyyy abcdefghij (where abcdefghit is the meet link). You can take attendance multiple times during a meet session. It will add attendees who joined later also in the same sheet in the later rows.
-
-Ensure that the first two columns have ALL the expected attendees (sorted by Roll number-if that is how you need to submit it). Their names must be EXACTLY as per their email account name (and not official records). You can copy paste names from attendees in say a meet session where all expected attendees were present.
+Ensure that the first column has ALL the expected attendees (sorted by Roll number-if that is how you need to submit it). Their names must be EXACTLY as per their email account name (and not official records). You can copy paste names from attendees in say a meet session where all expected attendees were present.
 
 Each time you click on the Show everyone button > then People during a meet session, it will fill a new sheet with attendees at that time. 
 
