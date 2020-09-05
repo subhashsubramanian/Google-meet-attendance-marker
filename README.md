@@ -56,5 +56,5 @@ Points to note:
 
 Run the Mark Attendance program each time after you get the attendees using the extension OR you can run the program after many sessions.
 
-## Program must be run on the sheet which on which you want attendance to be aggregated for e.g. in the sheet named 101 abcdefghij (where abcdefghit is the meet link for 101).
+### Program must be run on the sheet which on which you want attendance to be aggregated for e.g. in the sheet named 101 abcdefghij (where abcdefghij is the meet link for 101). That sheet will then have the attendance of all meet sessions in Present Absent format.
 
