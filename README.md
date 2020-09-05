@@ -16,8 +16,7 @@ Click on Add to Chrome > Add extension.
 
 3) Click on the icon to open the spreadsheet. Rename the spreadsheet if required. 
 
-3) You can add sheets and rename them (at the bottom). Have a sheet for each of your papers.
-
+3) You can add sheets and rename them (at the bottom). Have a sheet for each of your meet links where you will aggregate attendance.
 Points to note: 
 
 All future attendees will be captured in this spreadsheet. 
@@ -26,11 +25,11 @@ Attendance will be taken on the sheet which is in the first position -so drag th
 
 Add first two columns: The first column is Names of students (as per their email), second column is Roll nos.
 
-From the third column you'll see the names of attendees who came for each meet session at the time you took attendance.
+For each session the names of attendees who came for each meet session will be in a new sheet. You can take attendance multiple times during a meet session. It will add attendees who joined later also in the same sheet in the later rows.
 
-Ensure that the first two columns have ALL the expected attendees (sorted by Roll number-if that is how you need to submit it). Their names must be EXACTLY as per their email account name (and not official records)
+Ensure that the first two columns have ALL the expected attendees (sorted by Roll number-if that is how you need to submit it). Their names must be EXACTLY as per their email account name (and not official records). You can copy paste names from attendees in a session where all expected attendees were present.
 
-Each time you click on the Show everyone button > then People during a meet session, it will fill a new column with attendees at that time. You can turn this off by toggling off the horizontal toggle button.
+Each time you click on the Show everyone button > then People during a meet session, it will fill a new sheet with attendees at that time. You can turn this off by toggling off the horizontal toggle button.
 
 ## Step 2 Install the Google apps script code in the spreadsheet
 
@@ -64,5 +63,5 @@ Run the Mark Attendance program each time after you get the attendees using the 
 
 OR you can run the program after many sessions.
 
-Attendance will be taken on the sheet which is in the first position -so drag the sheet you want attendance in to first position as per your session.
+Program must be run on the sheet which on which you want attendance.
 
