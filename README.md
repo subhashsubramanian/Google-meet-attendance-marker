@@ -16,9 +16,9 @@ Click on Add to Chrome > Add extension.
 
 3) Click on the tick mark icon to open the spreadsheet. Rename the file if required. 
 
-You must leave the last 10 alphabets of the sheet as it is. This is where attendance will be agrregated. You can prefix say the subject code at the beginning e.g. your sheet might be named something like 101 abcdefghij (where abcdefghit is the meet link for 101). 
+After taking attendance the first time, you can change the first part of the sheet name (date in mm/dd/yyyy) to say your subject code. But you must leave the second part i.e. last 10 alphabets of the sheet name as it is. This is where attendance will be agrregated. For e.g. your sheet might be named something like 101 abcdefghij (where abcdefghit is the meet link for subject 101). 
 
-Add first two columns: The first column is Names of students (as per their email), second column is Roll no. Give header to column A as student Name and B as Roll no. 
+Edit the first columns: The first column is Names of students (as per their email), second column is Roll no. you can delete the other 2 columns (C and E) You can give a header to column A as student Name and to column B as Roll no. 
 
 Points to note: 
 
