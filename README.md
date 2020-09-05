@@ -16,7 +16,7 @@ Click on Add to Chrome > Add extension.
 
 3) Click on the tick mark icon to open the spreadsheet. Rename the file if required. 
 
-After taking attendance the first time, you can change the first part of the sheet name (date in mm/dd/yyyy) to say your subject code. But you must leave the second part i.e. the last 10 alphabets of the sheet name as it is. This is where all future meet attendance will be aggregated. For e.g. your sheet might be named something like 101 abcdefghij (where abcdefghij is the meet link for subject 101). 
+After taking attendance the first time, you can change the first part of the sheet name (mm/dd/yyyy) to, for e.g., your subject code. But you must leave the second part - i.e. the last 10 alphabets of the sheet name - as it is. This is where all future meet attendance will be aggregated. For e.g. your sheet might be named something like 101 abcdefghij (where 101 is paper code and abcdefghij is the G-meet link for the subject). 
 
 Edit the first column: The first column is Names of students (as per their email), add a column B with Roll no. you can delete the other columns (C, D etc.) You can give a header to column A as student Name and to column B as Roll no. 
 
