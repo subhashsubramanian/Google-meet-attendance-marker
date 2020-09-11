@@ -1,4 +1,4 @@
-/* Mark attendance against a nominal role v2.0 Sep-05-2020- Subhash Subramanian */
+/* Mark attendance against a nominal role v2.0- Subhash Subramanian */
 
 // Menu Options 
 function onOpen() {
@@ -48,6 +48,8 @@ function markAllCols(ss) {
   
   ss.getRange(firstRow, firstCol+1, lastrowR-firstRow+1, lastCol-firstCol).activate();
   ss.getActiveRangeList().setHorizontalAlignment('center');
+  ss.getRange(1,lastCol).activate();
+  ss.getActiveRangeList().setWrapStrategy(SpreadsheetApp.WrapStrategy.CLIP);
     
   Browser.msgBox("Attendance Marked");  
   // Second check if (ss.getRange[3][thisCol]) =="P" or ss.getRange[3][thisCol]) =="A" ) :
@@ -215,20 +217,6 @@ function deleteThisSheet(sheetName){
 }
 
 
-function test(){
-var file = SpreadsheetApp.getActiveSpreadsheet();
-  // get names of all sheets in the file
-  var sheetList = getAllSheetNames(file)
-  // Browser.msgBox(sheetList)
-  // choose relevant sheets = fromSheets
-  var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  // copy from all sheets with names with last 10 charaters same as this sheet
-  var toSheetName = ss.getSheetName();
-  Browser.msgBox(toSheetName);
-  sameNameSheets = retainSameSheetNames(sheetList,toSheetName);
-  Browser.msgBox(sameNameSheets);
-}
-
 /* double loop
 for (rowR=firstRow; rowR < lastrowR+1; rowR++){ //rowR loop
     lastCol = ss.getDataRange().getLastColumn();
@@ -245,3 +233,4 @@ for (rowR=firstRow; rowR < lastrowR+1; rowR++){ //rowR loop
     } // rowA loop
   } // rowR loop
  */ 
+
