@@ -5,9 +5,54 @@ function onOpen() {
   var ui = SpreadsheetApp.getUi();
   ui.createMenu('Attendance')
   .addItem('Mark Attendance', 'markAtt')
+  .addItem('Compile Numbers', 'compileStats')
   .addToUi();
 }
 
+
+function compileStats(){
+  var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet(); 
+  // count presents
+  var lastCol = ss.getDataRange().getLastColumn() ;
+  var thisCell = columnToLetter(lastCol, 2);
+  var lastrowR = lastRowofColumn(ss,lastCol);
+  ss.getRange(1, lastCol+1, lastrowR, 3).activate();
+  ss.getActiveRangeList().setHorizontalAlignment('center');
+  
+  ss.getRange(1,lastCol+1).activate();
+  ss.getRange(1,lastCol+1).setValue("Presents");
+  ss.getRange(2,lastCol+1).activate();
+  
+  //Browser.msgBox(thisCell)
+  ss.getCurrentCell().setFormula('=countif((C2:' + thisCell + '),"P")');
+  ss.getActiveRange().autoFillToNeighbor(SpreadsheetApp.AutoFillSeries.DEFAULT_SERIES);
+  ss.getActiveRangeList().setHorizontalAlignment('center');
+
+  
+  // count absents
+  //lastCol = ss.getDataRange().getLastColumn();
+  ss.getRange(1,lastCol+2).activate();
+  ss.getRange(1,lastCol+2).setValue("Absents");
+  ss.getRange(2,lastCol+2).activate();
+  //thisCell = columnToLetter(lastCol, 2);
+  ss.getCurrentCell().setFormula('=countif((C2:' + thisCell + '),"A")');
+  //ss.getRange(2,lastCol+2).activateAsCurrentCell();
+  //ss.getActiveRange().autoFillToNeighbor(SpreadsheetApp.AutoFillSeries.DEFAULT_SERIES);
+  ss.getActiveRange().autoFill(ss.getRange(2,lastCol+2,lastrowR,1), SpreadsheetApp.AutoFillSeries.DEFAULT_SERIES);
+
+  
+  
+  // count totals
+  //lastCol = ss.getDataRange().getLastColumn();
+  ss.getRange(1,lastCol+3).activate();
+  ss.getRange(1,lastCol+3).setValue("Total");
+  ss.getRange(2,lastCol+3).activate();
+  //thisCell = columnToLetter(lastCol, 2);
+  ss.getCurrentCell().setFormula('=counta(C2:' + thisCell + ')');
+  //ss.getRange(2,lastCol+3).activateAsCurrentCell();
+  //ss.getActiveRange().autoFillToNeighbor(SpreadsheetApp.AutoFillSeries.DEFAULT_SERIES);
+  ss.getActiveRange().autoFill(ss.getRange(2,lastCol+3,lastrowR,1), SpreadsheetApp.AutoFillSeries.DEFAULT_SERIES);
+}
 
 
 function markAtt(){
@@ -233,4 +278,16 @@ for (rowR=firstRow; rowR < lastrowR+1; rowR++){ //rowR loop
     } // rowA loop
   } // rowR loop
  */ 
+
+
+function columnToLetter(column, row) {
+  var temp, letter = '';
+  while (column > 0) {
+    temp = (column - 1) % 26;
+    letter = String.fromCharCode(temp + 65) + letter;
+    column = (column - temp - 1) / 26;
+  }
+  return letter + row;
+}
+
 
