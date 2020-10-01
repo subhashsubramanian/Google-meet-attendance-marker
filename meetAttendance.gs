@@ -1,4 +1,4 @@
-/* Mark attendance against a nominal role v2.0- Subhash Subramanian */
+/* Mark attendance against a nominal role v3.0- Subhash Subramanian */
 
 // Menu Options 
 function onOpen() {
