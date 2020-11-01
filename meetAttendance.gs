@@ -38,7 +38,7 @@ function compileStats(){
   ss.getCurrentCell().setFormula('=countif((C2:' + thisCell + '),"A")');
   //ss.getRange(2,lastCol+2).activateAsCurrentCell();
   //ss.getActiveRange().autoFillToNeighbor(SpreadsheetApp.AutoFillSeries.DEFAULT_SERIES);
-  ss.getActiveRange().autoFill(ss.getRange(2,lastCol+2,lastrowR,1), SpreadsheetApp.AutoFillSeries.DEFAULT_SERIES);
+  ss.getActiveRange().autoFill(ss.getRange(2,lastCol+2,lastrowR-1,1), SpreadsheetApp.AutoFillSeries.DEFAULT_SERIES);
 
   
   
@@ -51,7 +51,7 @@ function compileStats(){
   ss.getCurrentCell().setFormula('=counta(C2:' + thisCell + ')');
   //ss.getRange(2,lastCol+3).activateAsCurrentCell();
   //ss.getActiveRange().autoFillToNeighbor(SpreadsheetApp.AutoFillSeries.DEFAULT_SERIES);
-  ss.getActiveRange().autoFill(ss.getRange(2,lastCol+3,lastrowR,1), SpreadsheetApp.AutoFillSeries.DEFAULT_SERIES);
+  ss.getActiveRange().autoFill(ss.getRange(2,lastCol+3,lastrowR-1,1), SpreadsheetApp.AutoFillSeries.DEFAULT_SERIES);
 }
 
 
